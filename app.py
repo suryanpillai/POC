@@ -6,15 +6,16 @@ def show_banner():
 def analyze_text(text):
     words = text.split()
 
-    return {
-        "word_count": len(words),
-        "character_count": len(text),
-        "uppercase_text": text.upper(),
-        "lowercase_text": text.lower(),
-        "sentence_count": len(
-            [sentence for sentence in text.split(".") if sentence.strip()]
-        )
-    }
+   return {
+    "word_count": len(words),
+    "character_count": len(text),
+    "uppercase_text": text.upper(),
+    "lowercase_text": text.lower(),
+    "sentence_count": len(
+        [sentence for sentence in text.split(".") if sentence.strip()]
+    ),
+    "reversed_text": text[::-1]
+}
 
 show_banner()
 
