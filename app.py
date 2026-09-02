@@ -1,3 +1,9 @@
+def show_banner():
+    print("=" * 40)
+    print("       AI TEXT AUTOMATION TOOL")
+    print("=" * 40)
+
+
 def analyze_text(text):
     words = text.split()
 
@@ -8,12 +14,14 @@ def analyze_text(text):
     }
 
 
-text = input("Enter some text: ")
+show_banner()
+
+text = input("\nEnter some text: ")
 
 result = analyze_text(text)
 
 print("\nAI Automation Result")
-print("--------------------")
+print("-" * 40)
 
 for key, value in result.items():
     print(f"{key}: {value}")
