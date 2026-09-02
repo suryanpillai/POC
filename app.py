@@ -19,6 +19,7 @@ consonant_count = sum(
     for char in text
     "space_count": space_count,
     line_count = len(text.splitlines())
+longest_word = max(words, key=len) if words else ""
 )
 
 ```
