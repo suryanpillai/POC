@@ -1,3 +1,4 @@
+from utils import clean_text
 SEPARATOR = "=" * 40
 
 def show_banner():
