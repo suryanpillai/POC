@@ -43,6 +43,7 @@ return {
     space_count = text.count(" "),
     "line_count": line_count,
     "longest_word": longest_word,
+    "shortest_word": shortest_word,
 }
 ```
 
