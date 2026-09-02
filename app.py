@@ -24,6 +24,7 @@ shortest_word = min(words, key=len) if words else ""
 average_word_length = (
     sum(len(word) for word in words) / len(words)
     if words else 0
+    unique_word_count = len(set(word.lower() for word in words))
 )
 )
 
