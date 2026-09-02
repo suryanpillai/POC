@@ -1,4 +1,4 @@
-print("=" * 40)
+print(SEPARATOR)
 def show_banner():
 print("=" * 40)
 print("       AI TEXT AUTOMATION TOOL")
