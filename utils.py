@@ -1,2 +1,2 @@
 def clean_text(text):
-    return text.strip()
+    return " ".join(text.split())
