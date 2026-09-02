@@ -13,6 +13,7 @@ uppercase_count = sum(char.isupper() for char in text)
 lowercase_count = sum(char.islower() for char in text)
 text_length = len(text)
 is_empty = not bool(text.strip())
+vowel_count = sum(char.lower() in "aeiou" for char in text)
 
 ```
 return {
