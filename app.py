@@ -17,6 +17,7 @@ vowel_count = sum(char.lower() in "aeiou" for char in text)
 consonant_count = sum(
     char.isalpha() and char.lower() not in "aeiou"
     for char in text
+    "space_count": space_count,
 )
 
 ```
