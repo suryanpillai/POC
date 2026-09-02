@@ -56,6 +56,7 @@ return {
     "unique_word_count": unique_word_count,
     "contains_question": contains_question,
     "contains_exclamation": contains_exclamation,
+    "uppercase_text": to_uppercase(text),
 }
 ```
 
