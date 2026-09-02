@@ -1,4 +1,4 @@
-from utils import clean_text
+from utils import clean_text, to_uppercase
 SEPARATOR = "=" * 40
 
 def show_banner():
