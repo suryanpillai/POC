@@ -35,6 +35,7 @@ return {
     "lowercase_count": lowercase_count,
     "is_empty": is_empty,
     "vowel_count": vowel_count,
+    "consonant_count": consonant_count,
 }
 ```
 
