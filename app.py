@@ -50,6 +50,7 @@ return {
     "longest_word": longest_word,
     "shortest_word": shortest_word,
     "average_word_length": round(average_word_length, 2),
+    "unique_word_count": unique_word_count,
 }
 ```
 
