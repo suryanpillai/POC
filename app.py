@@ -15,7 +15,8 @@ return {
     "sentence_count": len(
         [sentence for sentence in text.split(".") if sentence.strip()]
     ),
-    "reversed_text": text[::-1]
+   "reversed_text": text[::-1],
+"title_case_text": text.title()
 }
 ```
 
