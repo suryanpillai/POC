@@ -54,6 +54,7 @@ return {
     "average_word_length": round(average_word_length, 2),
     "unique_word_count": unique_word_count,
     "contains_question": contains_question,
+    "contains_exclamation": contains_exclamation,
 }
 ```
 
