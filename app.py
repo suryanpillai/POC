@@ -9,10 +9,10 @@ words = text.split()
 uppercase_count = sum(char.isupper() for char in text)
 lowercase_count = sum(char.islower() for char in text)
 text_length = len(text)
-```
+
 return {
     "word_count": len(words),
-    "character_count": len(text),
+    "character_count": text_length,
     "uppercase_text": text.upper(),
     "lowercase_text": text.lower(),
     "sentence_count": len(
