@@ -6,7 +6,7 @@ print("=" * 40)
 def analyze_text(text):
 digit_count = sum(char.isdigit() for char in text)
 words = text.split()
-
+uppercase_count = sum(char.isupper() for char in text)
 ```
 return {
     "word_count": len(words),
