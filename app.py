@@ -3,7 +3,6 @@ def show_banner():
     print("       AI TEXT AUTOMATION TOOL")
     print("=" * 40)
 
-
 def analyze_text(text):
     words = text.split()
 
@@ -11,9 +10,11 @@ def analyze_text(text):
         "word_count": len(words),
         "character_count": len(text),
         "uppercase_text": text.upper(),
-    "lowercase_text": text.lower()
+        "lowercase_text": text.lower(),
+        "sentence_count": len(
+            [sentence for sentence in text.split(".") if sentence.strip()]
+        )
     }
-
 
 show_banner()
 
