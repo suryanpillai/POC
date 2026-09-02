@@ -26,6 +26,7 @@ average_word_length = (
     if words else 0
     unique_word_count = len(set(word.lower() for word in words))
 contains_question = "?" in text
+contains_exclamation = "!" in text
 )
 )
 
