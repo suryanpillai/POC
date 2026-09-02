@@ -29,7 +29,8 @@ return {
     "digit_count": digit_count,
     "uppercase_count": uppercase_count,
     "lowercase_count": lowercase_count,
-    "is_empty": is_empty
+    "is_empty": is_empty,
+    "vowel_count": vowel_count,
 }
 ```
 
