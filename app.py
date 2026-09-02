@@ -1,4 +1,5 @@
 from utils import clean_text, to_uppercase, to_lowercase
+APP_VERSION = "1.0.0"
 SEPARATOR = "=" * 40
 
 def show_banner():
