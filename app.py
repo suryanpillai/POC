@@ -1,12 +1,13 @@
 def show_banner():
-    print("=" * 40)
-    print("       AI TEXT AUTOMATION TOOL")
-    print("=" * 40)
+print("=" * 40)
+print("       AI TEXT AUTOMATION TOOL")
+print("=" * 40)
 
 def analyze_text(text):
-    words = text.split()
+words = text.split()
 
-   return {
+```
+return {
     "word_count": len(words),
     "character_count": len(text),
     "uppercase_text": text.upper(),
@@ -16,18 +17,21 @@ def analyze_text(text):
     ),
     "reversed_text": text[::-1]
 }
+```
 
 show_banner()
 
 text = input("\nEnter some text: ")
 
 if not text.strip():
-    print("Please enter some valid text.")
+print("Please enter some valid text.")
 else:
-    result = analyze_text(text)
+result = analyze_text(text)
 
-    print("\nAI Automation Result")
-    print("-" * 40)
+```
+print("\nAI Automation Result")
+print("-" * 40)
 
-    for key, value in result.items():
-        print(f"{key}: {value}")
+for key, value in result.items():
+    print(f"{key}: {value}")
+```
