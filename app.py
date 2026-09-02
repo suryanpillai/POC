@@ -10,7 +10,8 @@ def analyze_text(text):
     return {
         "word_count": len(words),
         "character_count": len(text),
-        "uppercase_text": text.upper()
+        "uppercase_text": text.upper(),
+    "lowercase_text": text.lower()
     }
 
 
