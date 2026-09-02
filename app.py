@@ -61,7 +61,7 @@ return {
 
 show_banner()
 
-text = input("\nEnter some text: ")
+text = clean_text(input("\nEnter some text: "))
 
 if not text.strip():
 print("Please enter some valid text.")
