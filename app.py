@@ -21,6 +21,10 @@ consonant_count = sum(
     line_count = len(text.splitlines())
 longest_word = max(words, key=len) if words else ""
 shortest_word = min(words, key=len) if words else ""
+average_word_length = (
+    sum(len(word) for word in words) / len(words)
+    if words else 0
+)
 )
 
 ```
