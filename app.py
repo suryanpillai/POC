@@ -38,6 +38,7 @@ result = analyze_text(text)
 
 ```
 print("\nAI Automation Result")
+print("Analyze your text with simple automation")
 print("-" * 40)
 
 for key, value in result.items():
