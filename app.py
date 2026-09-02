@@ -41,6 +41,7 @@ return {
     "consonant_count": consonant_count,
     space_count = text.count(" "),
     "line_count": line_count,
+    "longest_word": longest_word,
 }
 ```
 
