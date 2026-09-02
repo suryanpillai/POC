@@ -1,4 +1,5 @@
 print(SEPARATOR)
+print(SEPARATOR)
 def show_banner():
 print("=" * 40)
 print("       AI TEXT AUTOMATION TOOL")
