@@ -9,6 +9,7 @@ words = text.split()
 uppercase_count = sum(char.isupper() for char in text)
 lowercase_count = sum(char.islower() for char in text)
 text_length = len(text)
+"is_empty": not bool(text.strip())
 
 return {
     "word_count": len(words),
