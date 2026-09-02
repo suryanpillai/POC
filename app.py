@@ -20,6 +20,7 @@ consonant_count = sum(
     "space_count": space_count,
     line_count = len(text.splitlines())
 longest_word = max(words, key=len) if words else ""
+shortest_word = min(words, key=len) if words else ""
 )
 
 ```
