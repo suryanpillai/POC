@@ -36,6 +36,7 @@ return {
     "is_empty": is_empty,
     "vowel_count": vowel_count,
     "consonant_count": consonant_count,
+    space_count = text.count(" ")
 }
 ```
 
