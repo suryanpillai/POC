@@ -21,10 +21,13 @@ show_banner()
 
 text = input("\nEnter some text: ")
 
-result = analyze_text(text)
+if not text.strip():
+    print("Please enter some valid text.")
+else:
+    result = analyze_text(text)
 
-print("\nAI Automation Result")
-print("-" * 40)
+    print("\nAI Automation Result")
+    print("-" * 40)
 
-for key, value in result.items():
-    print(f"{key}: {value}")
+    for key, value in result.items():
+        print(f"{key}: {value}")
