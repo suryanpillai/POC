@@ -1,9 +1,10 @@
-print(SEPARATOR)
-print(SEPARATOR)
+SEPARATOR = "=" * 40
+
 def show_banner():
-print("=" * 40)
+print(SEPARATOR)
 print("       AI TEXT AUTOMATION TOOL")
-print("=" * 40)
+print("Analyze your text with simple automation")
+print(SEPARATOR)
 
 def analyze_text(text):
 digit_count = sum(char.isdigit() for char in text)
@@ -11,8 +12,9 @@ words = text.split()
 uppercase_count = sum(char.isupper() for char in text)
 lowercase_count = sum(char.islower() for char in text)
 text_length = len(text)
-"is_empty": not bool(text.strip())
+is_empty = not bool(text.strip())
 
+```
 return {
     "word_count": len(words),
     "character_count": text_length,
@@ -21,11 +23,12 @@ return {
     "sentence_count": len(
         [sentence for sentence in text.split(".") if sentence.strip()]
     ),
-   "reversed_text": text[::-1],
-"title_case_text": text.title(),
+    "reversed_text": text[::-1],
+    "title_case_text": text.title(),
     "digit_count": digit_count,
     "uppercase_count": uppercase_count,
-    "lowercase_count": lowercase_count
+    "lowercase_count": lowercase_count,
+    "is_empty": is_empty
 }
 ```
 
@@ -40,8 +43,7 @@ result = analyze_text(text)
 
 ```
 print("\nAI Automation Result")
-print("Analyze your text with simple automation")
-print("-" * 40)
+print(SEPARATOR)
 
 for key, value in result.items():
     print(f"{key}: {value}")
