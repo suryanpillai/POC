@@ -48,6 +48,7 @@ return {
     "line_count": line_count,
     "longest_word": longest_word,
     "shortest_word": shortest_word,
+    "average_word_length": round(average_word_length, 2),
 }
 ```
 
