@@ -4,6 +4,7 @@ print("       AI TEXT AUTOMATION TOOL")
 print("=" * 40)
 
 def analyze_text(text):
+digit_count = sum(char.isdigit() for char in text)
 words = text.split()
 
 ```
