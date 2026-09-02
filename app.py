@@ -18,7 +18,8 @@ return {
     ),
    "reversed_text": text[::-1],
 "title_case_text": text.title(),
-    "digit_count": digit_count
+    "digit_count": digit_count,
+    "uppercase_count": uppercase_count
 }
 ```
 
