@@ -25,6 +25,7 @@ average_word_length = (
     sum(len(word) for word in words) / len(words)
     if words else 0
     unique_word_count = len(set(word.lower() for word in words))
+contains_question = "?" in text
 )
 )
 
