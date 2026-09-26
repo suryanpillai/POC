@@ -1,5 +1,6 @@
 import csv
 import json
+import os
 
 from utils import (
     clean_text,
@@ -19,6 +20,8 @@ from config import (
     SEPARATOR,
     DEFAULT_ENCODING,
     DEFAULT_OUTPUT_FILE,
+    DEFAULT_CSV_FILE,
+    OUTPUT_DIRECTORY,
 )
 
 
@@ -156,11 +159,7 @@ def display_results(result):
     print(SEPARATOR)
 
     for key, value in result.items():
-        display_key = key.replace(
-            "_",
-            " "
-        ).title()
-
+        display_key = key.replace("_", " ").title()
         print(f"{display_key}: {value}")
 
 
@@ -169,8 +168,15 @@ def save_results_to_json(
     filename=DEFAULT_OUTPUT_FILE
 ):
     """Save analysis results to a JSON file."""
+    os.makedirs(OUTPUT_DIRECTORY, exist_ok=True)
+
+    filepath = os.path.join(
+        OUTPUT_DIRECTORY,
+        filename
+    )
+
     with open(
-        filename,
+        filepath,
         "w",
         encoding=DEFAULT_ENCODING
     ) as file:
@@ -180,16 +186,23 @@ def save_results_to_json(
             indent=4
         )
 
-    print(f"\nResults saved to {filename}")
+    print(f"\nResults saved to {filepath}")
 
 
 def save_results_to_csv(
     result,
-    filename="analysis_result.csv"
+    filename=DEFAULT_CSV_FILE
 ):
     """Save analysis results to a CSV file."""
+    os.makedirs(OUTPUT_DIRECTORY, exist_ok=True)
+
+    filepath = os.path.join(
+        OUTPUT_DIRECTORY,
+        filename
+    )
+
     with open(
-        filename,
+        filepath,
         "w",
         newline="",
         encoding=DEFAULT_ENCODING
@@ -201,7 +214,7 @@ def save_results_to_csv(
         for key, value in result.items():
             writer.writerow([key, value])
 
-    print(f"Results saved to {filename}")
+    print(f"Results saved to {filepath}")
 
 
 def main():
