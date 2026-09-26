@@ -63,6 +63,12 @@ def analyze_text(text):
     sentence_count = count_sentences(text)
     paragraph_count = count_paragraphs(text)
 
+    most_common_word = (
+        max(word_frequency, key=word_frequency.get)
+        if word_frequency
+        else ""
+    )
+
     return {
         "word_count": len(words),
         "character_count": text_length,
@@ -86,6 +92,7 @@ def analyze_text(text):
         "average_word_length": round(average_word_length, 2),
         "unique_word_count": unique_word_count,
         "word_frequency": word_frequency,
+        "most_common_word": most_common_word,
         "estimated_reading_time_minutes": reading_time,
         "contains_question": contains_question,
         "contains_exclamation": contains_exclamation,
