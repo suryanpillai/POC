@@ -37,24 +37,32 @@ def validate_text_length(text, max_length=MAX_INPUT_LENGTH):
 
 def count_punctuation(text):
     """Count punctuation characters in text."""
-    return sum(char in string.punctuation for char in text)
+    return sum(
+        char in string.punctuation
+        for char in text
+    )
 
 
 def estimate_reading_time(text, words_per_minute=200):
     """Estimate reading time in minutes."""
     if words_per_minute <= 0:
-        raise ValueError("Words per minute must be greater than zero.")
+        raise ValueError(
+            "Words per minute must be greater than zero."
+        )
 
     words = len(text.split())
 
     if words == 0:
         return 0
 
-    return round(words / words_per_minute, 2)
+    return round(
+        words / words_per_minute,
+        2
+    )
 
 
 def get_word_frequency(text):
-    """Return word frequency information for the supplied text."""
+    """Return word frequency information."""
     words = text.lower().split()
     return dict(Counter(words))
 
