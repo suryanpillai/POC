@@ -69,6 +69,12 @@ def analyze_text(text):
         else ""
     )
 
+    repeated_words = {
+        word: count
+        for word, count in word_frequency.items()
+        if count > 1
+    }
+
     return {
         "word_count": len(words),
         "character_count": text_length,
@@ -93,6 +99,7 @@ def analyze_text(text):
         "unique_word_count": unique_word_count,
         "word_frequency": word_frequency,
         "most_common_word": most_common_word,
+        "repeated_words": repeated_words,
         "estimated_reading_time_minutes": reading_time,
         "contains_question": contains_question,
         "contains_exclamation": contains_exclamation,
