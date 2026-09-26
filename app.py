@@ -3,11 +3,12 @@ from utils import (
     to_uppercase,
     to_lowercase,
     validate_text_length,
+    count_punctuation,
 )
 
 from config import APP_NAME, APP_VERSION, SEPARATOR
 
-
+punctuation_count = count_punctuation(text)
 def show_banner():
     print(SEPARATOR)
     print(f"       {APP_NAME.upper()}")
