@@ -1,4 +1,3 @@
-
 """Application configuration for AI Text Automation."""
 
 APP_NAME = "AI Text Automation Tool"
@@ -9,3 +8,5 @@ SEPARATOR = "=" * 40
 DEFAULT_ENCODING = "utf-8"
 
 MAX_INPUT_LENGTH = 10000
+
+DEFAULT_OUTPUT_FILE = "analysis_result.json"
