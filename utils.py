@@ -1,5 +1,9 @@
 def clean_text(text):
-return " ".join(text.split())
+    """Remove unnecessary whitespace from text."""
+    if text is None:
+        return ""
+
+    return " ".join(str(text).split())
 
 def to_lowercase(text):
 return text.lower()
