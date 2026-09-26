@@ -1,44 +1,11 @@
 """Utility functions for AI Text Automation."""
 
-from utils import (
-    clean_text,
-    to_uppercase,
-    to_lowercase,
-    validate_text_length,
-    count_punctuation,
-    estimate_reading_time,
-    get_word_frequency,
-)
-
-def count_paragraphs(text):
-    """Count non-empty paragraphs in text."""
-    paragraphs = [
-        paragraph.strip()
-        for paragraph in text.split("\n\n")
-        if paragraph.strip()
-    ]
-
-    return len(paragraphs)
-
-def count_sentences(text):
-    """Count sentences based on common sentence-ending punctuation."""
-    sentences = [
-        sentence.strip()
-        for sentence in text.replace("!", ".")
-        .replace("?", ".")
-        .split(".")
-        if sentence.strip()
-    ]
-
-    return len(sentences)
-
 import string
 from collections import Counter
 
 from config import MAX_INPUT_LENGTH
 
-reading_time = estimate_reading_time(text)
-"estimated_reading_time_minutes": reading_time,
+
 def clean_text(text):
     """Remove unnecessary whitespace from text."""
     if text is None:
@@ -90,3 +57,30 @@ def get_word_frequency(text):
     """Return word frequency information for the supplied text."""
     words = text.lower().split()
     return dict(Counter(words))
+
+
+def count_sentences(text):
+    """Count sentences using common sentence-ending punctuation."""
+    normalized_text = (
+        text.replace("!", ".")
+        .replace("?", ".")
+    )
+
+    sentences = [
+        sentence.strip()
+        for sentence in normalized_text.split(".")
+        if sentence.strip()
+    ]
+
+    return len(sentences)
+
+
+def count_paragraphs(text):
+    """Count non-empty paragraphs."""
+    paragraphs = [
+        paragraph.strip()
+        for paragraph in text.split("\n\n")
+        if paragraph.strip()
+    ]
+
+    return len(paragraphs)
