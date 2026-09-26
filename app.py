@@ -1,23 +1,18 @@
-import json
-
 from utils import (
     clean_text,
     to_uppercase,
     to_lowercase,
     validate_text_length,
     count_punctuation,
+    estimate_reading_time,
+    get_word_frequency,
+    count_sentences,
+    count_paragraphs,
 )
-
-def save_results_to_json(result, filename="analysis_result.json"):
-    """Save analysis results to a JSON file."""
-    with open(filename, "w", encoding="utf-8") as file:
-        json.dump(result, file, indent=4)
-
-    print(f"\nResults saved to {filename}")
 
 from config import APP_NAME, APP_VERSION, SEPARATOR
 
-punctuation_count = count_punctuation(text)
+
 def show_banner():
     print(SEPARATOR)
     print(f"       {APP_NAME.upper()}")
@@ -62,18 +57,19 @@ def analyze_text(text):
     contains_question = "?" in text
     contains_exclamation = "!" in text
 
+    punctuation_count = count_punctuation(text)
+    reading_time = estimate_reading_time(text)
+    word_frequency = get_word_frequency(text)
+    sentence_count = count_sentences(text)
+    paragraph_count = count_paragraphs(text)
+
     return {
         "word_count": len(words),
         "character_count": text_length,
         "uppercase_text": to_uppercase(text),
         "lowercase_text": to_lowercase(text),
-        "sentence_count": len(
-            [
-                sentence
-                for sentence in text.split(".")
-                if sentence.strip()
-            ]
-        ),
+        "sentence_count": sentence_count,
+        "paragraph_count": paragraph_count,
         "reversed_text": text[::-1],
         "title_case_text": text.title(),
         "digit_count": digit_count,
@@ -84,10 +80,13 @@ def analyze_text(text):
         "consonant_count": consonant_count,
         "space_count": space_count,
         "line_count": line_count,
+        "punctuation_count": punctuation_count,
         "longest_word": longest_word,
         "shortest_word": shortest_word,
         "average_word_length": round(average_word_length, 2),
         "unique_word_count": unique_word_count,
+        "word_frequency": word_frequency,
+        "estimated_reading_time_minutes": reading_time,
         "contains_question": contains_question,
         "contains_exclamation": contains_exclamation,
     }
@@ -99,21 +98,32 @@ def get_text_input():
     return clean_text(text)
 
 
-show_banner()
-
-print("Welcome! Enter text to begin analysis.")
-
-text = get_text_input()
-
-if not text.strip():
-    print("Please enter some valid text.")
-else:
-    result = analyze_text(text)
-
+def display_results(result):
+    """Display analysis results in a readable format."""
     print("\nAI Automation Result")
     print(SEPARATOR)
 
     for key, value in result.items():
-        print(f"{key}: {value}")
+        display_key = key.replace("_", " ").title()
+        print(f"{display_key}: {value}")
 
-print("\nThank you for using AI Text Automation Tool!")
+
+def main():
+    show_banner()
+
+    print("Welcome! Enter text to begin analysis.")
+
+    text = get_text_input()
+
+    if not text.strip():
+        print("Please enter some valid text.")
+        return
+
+    result = analyze_text(text)
+    display_results(result)
+
+    print("\nThank you for using AI Text Automation Tool!")
+
+
+if __name__ == "__main__":
+    main()
