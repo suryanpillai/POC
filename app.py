@@ -23,12 +23,28 @@ def show_banner():
 
 def analyze_text(text):
     digit_count = sum(char.isdigit() for char in text)
-    alphabetic_count = sum(char.isalpha() for char in text)
+
+    digits_found = [
+        char for char in text
+        if char.isdigit()
+    ]
+
+    alphabetic_count = sum(
+        char.isalpha()
+        for char in text
+    )
 
     words = text.split()
 
-    uppercase_count = sum(char.isupper() for char in text)
-    lowercase_count = sum(char.islower() for char in text)
+    uppercase_count = sum(
+        char.isupper()
+        for char in text
+    )
+
+    lowercase_count = sum(
+        char.islower()
+        for char in text
+    )
 
     text_length = len(text)
     is_empty = not bool(text.strip())
@@ -39,19 +55,30 @@ def analyze_text(text):
     )
 
     consonant_count = sum(
-        char.isalpha() and char.lower() not in "aeiou"
+        char.isalpha()
+        and char.lower() not in "aeiou"
         for char in text
     )
 
     space_count = text.count(" ")
     line_count = len(text.splitlines())
 
-    longest_word = max(words, key=len) if words else ""
-    shortest_word = min(words, key=len) if words else ""
+    longest_word = (
+        max(words, key=len)
+        if words
+        else ""
+    )
+
+    shortest_word = (
+        min(words, key=len)
+        if words
+        else ""
+    )
 
     average_word_length = (
         sum(len(word) for word in words) / len(words)
-        if words else 0
+        if words
+        else 0
     )
 
     unique_word_count = len(
@@ -68,7 +95,10 @@ def analyze_text(text):
     paragraph_count = count_paragraphs(text)
 
     most_common_word = (
-        max(word_frequency, key=word_frequency.get)
+        max(
+            word_frequency,
+            key=word_frequency.get
+        )
         if word_frequency
         else ""
     )
@@ -90,6 +120,7 @@ def analyze_text(text):
         "reversed_text": text[::-1],
         "title_case_text": text.title(),
         "digit_count": digit_count,
+        "digits_found": digits_found,
         "uppercase_count": uppercase_count,
         "lowercase_count": lowercase_count,
         "is_empty": is_empty,
@@ -100,7 +131,10 @@ def analyze_text(text):
         "punctuation_count": punctuation_count,
         "longest_word": longest_word,
         "shortest_word": shortest_word,
-        "average_word_length": round(average_word_length, 2),
+        "average_word_length": round(
+            average_word_length,
+            2
+        ),
         "unique_word_count": unique_word_count,
         "word_frequency": word_frequency,
         "most_common_word": most_common_word,
@@ -123,7 +157,11 @@ def display_results(result):
     print(SEPARATOR)
 
     for key, value in result.items():
-        display_key = key.replace("_", " ").title()
+        display_key = key.replace(
+            "_",
+            " "
+        ).title()
+
         print(f"{display_key}: {value}")
 
 
@@ -139,6 +177,7 @@ def main():
         return
 
     result = analyze_text(text)
+
     display_results(result)
 
     print("\nThank you for using AI Text Automation Tool!")
