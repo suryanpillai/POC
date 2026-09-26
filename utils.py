@@ -10,6 +10,18 @@ from utils import (
     get_word_frequency,
 )
 
+def count_sentences(text):
+    """Count sentences based on common sentence-ending punctuation."""
+    sentences = [
+        sentence.strip()
+        for sentence in text.replace("!", ".")
+        .replace("?", ".")
+        .split(".")
+        if sentence.strip()
+    ]
+
+    return len(sentences)
+
 import string
 from collections import Counter
 
