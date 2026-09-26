@@ -1,3 +1,9 @@
+from utils import (
+    clean_text,
+    to_uppercase,
+    to_lowercase,
+    validate_text_length,
+)
 from utils import clean_text, to_uppercase, to_lowercase
 
 from config import APP_NAME, APP_VERSION, SEPARATOR
