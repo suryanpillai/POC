@@ -1,6 +1,7 @@
 import csv
 import json
 import os
+from datetime import datetime
 
 from utils import (
     clean_text,
@@ -264,7 +265,7 @@ def save_results_to_csv(
 
 
 def save_analysis_history(result):
-    """Save analysis results to the history file."""
+    """Save analysis results with a timestamp."""
     history = []
 
     if os.path.exists(HISTORY_FILE):
@@ -279,7 +280,12 @@ def save_analysis_history(result):
         except json.JSONDecodeError:
             history = []
 
-    history.append(result)
+    history_entry = {
+        "timestamp": datetime.now().isoformat(),
+        "result": result,
+    }
+
+    history.append(history_entry)
 
     with open(
         HISTORY_FILE,
