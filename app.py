@@ -1,11 +1,10 @@
 from utils import clean_text, to_uppercase, to_lowercase
 
-APP_VERSION = "1.0.0"
-SEPARATOR = "=" * 40
+from config import APP_NAME, APP_VERSION, SEPARATOR
 
 def show_banner():
 print(SEPARATOR)
-print("       AI TEXT AUTOMATION TOOL")
+print(f"       {APP_NAME.upper()}")
 print(f"Version: {APP_VERSION}")
 print("Analyze your text with simple automation")
 print(SEPARATOR)
