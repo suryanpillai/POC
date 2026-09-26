@@ -1,3 +1,5 @@
+import json
+
 from utils import (
     clean_text,
     to_uppercase,
