@@ -73,9 +73,10 @@ return {
     "contains_exclamation": contains_exclamation
 }
 ```
-
 def get_text_input():
-return clean_text(input("\nEnter some text: "))
+    text = input("\nEnter some text: ")
+    validate_text_length(text)
+    return clean_text(text)
 
 show_banner()
 
