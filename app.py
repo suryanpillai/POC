@@ -22,6 +22,7 @@ from config import (
     DEFAULT_OUTPUT_FILE,
     DEFAULT_CSV_FILE,
     OUTPUT_DIRECTORY,
+    HISTORY_FILE,
 )
 
 
@@ -262,6 +263,36 @@ def save_results_to_csv(
     )
 
 
+def save_analysis_history(result):
+    """Save analysis results to the history file."""
+    history = []
+
+    if os.path.exists(HISTORY_FILE):
+        try:
+            with open(
+                HISTORY_FILE,
+                "r",
+                encoding=DEFAULT_ENCODING
+            ) as file:
+                history = json.load(file)
+
+        except json.JSONDecodeError:
+            history = []
+
+    history.append(result)
+
+    with open(
+        HISTORY_FILE,
+        "w",
+        encoding=DEFAULT_ENCODING
+    ) as file:
+        json.dump(
+            history,
+            file,
+            indent=4
+        )
+
+
 def main():
     show_banner()
 
@@ -283,6 +314,7 @@ def main():
 
     save_results_to_json(result)
     save_results_to_csv(result)
+    save_analysis_history(result)
 
     print(
         "\nThank you for using "
