@@ -1,54 +1,60 @@
-# AI Automation
+# AI Text Automation Tool
 
-A simple Python project that demonstrates how AI can automate common text-processing tasks.
+A Python-based text automation and analysis application that processes user-provided text and generates useful insights automatically.
+
+The project demonstrates how Python can be used to automate common text-processing, analysis, validation, and reporting tasks.
 
 ## Features
 
-* Text summarization
-* Sentiment analysis
-* Keyword extraction
-* Basic text classification
-* Automated text processing
+The application currently supports:
+
+- Text cleaning and normalization
+- Word count
+- Character count
+- Alphabetic character count
+- Uppercase and lowercase analysis
+- Digit detection and digit counting
+- Vowel and consonant counting
+- Space and line counting
+- Punctuation counting
+- Sentence counting
+- Paragraph counting
+- Longest and shortest word detection
+- Average word length calculation
+- Unique word counting
+- Word frequency analysis
+- Repeated word detection
+- Most common word detection
+- Question and exclamation detection
+- Reading-time estimation
+- Uppercase text conversion
+- Lowercase text conversion
+- Title-case conversion
+- Reversed text generation
+- Input length validation
+- Text-file reading support
+- JSON result export
+- CSV result export
+- Analysis history tracking
+- Timestamped analysis records
+- Application logging
+- Configurable application settings
 
 ## Project Structure
 
-* `app.py` - Main application
-* `prompts.py` - Prompt templates
-* `requirements.txt` - Project dependencies
-* `examples/` - Example input files
-
-## Getting Started
-
-Clone the repository:
-
-```bash
-git clone <your-repository-url>
-```
-
-Install the dependencies:
-
-```bash
-pip install -r requirements.txt
-```
-
-Run the application:
-
-```bash
-python app.py
-```
-
-## Future Improvements
-
-* Add AI API integration
-* Build a web interface
-* Add more automation workflows
-* Improve text analysis
-* Add unit tests
-
-## Purpose
-
-This project is created to explore AI automation concepts and experiment with simple AI-powered workflows.
-
-## License
-
-This project is available for learning and experimentation.
+```text
+AI-Text-Automation/
+│
+├── app.py
+├── utils.py
+├── config.py
+├── prompts.py
+├── requirements.txt
+├── README.md
+├── .gitignore
+│
+├── output/
+│   ├── analysis_result.json
+│   └── analysis_result.csv
+│
+└── analysis_history.json
