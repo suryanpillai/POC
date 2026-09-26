@@ -37,6 +37,7 @@ logger = logging.getLogger(__name__)
 
 
 def show_banner():
+    """Display the application banner."""
     print(SEPARATOR)
     print(f"       {APP_NAME.upper()}")
     print(f"Version: {APP_VERSION}")
@@ -45,10 +46,15 @@ def show_banner():
 
 
 def analyze_text(text):
-    digit_count = sum(char.isdigit() for char in text)
+    """Analyze the supplied text and return structured results."""
+    digit_count = sum(
+        char.isdigit()
+        for char in text
+    )
 
     digits_found = [
-        char for char in text
+        char
+        for char in text
         if char.isdigit()
     ]
 
@@ -70,7 +76,10 @@ def analyze_text(text):
     )
 
     text_length = len(text)
-    is_empty = not bool(text.strip())
+
+    is_empty = not bool(
+        text.strip()
+    )
 
     vowel_count = sum(
         char.lower() in "aeiou"
@@ -84,33 +93,61 @@ def analyze_text(text):
     )
 
     space_count = text.count(" ")
-    line_count = len(text.splitlines())
 
-    longest_word = max(words, key=len) if words else ""
-    shortest_word = min(words, key=len) if words else ""
+    line_count = len(
+        text.splitlines()
+    )
+
+    longest_word = (
+        max(words, key=len)
+        if words
+        else ""
+    )
+
+    shortest_word = (
+        min(words, key=len)
+        if words
+        else ""
+    )
 
     average_word_length = (
         sum(len(word) for word in words) / len(words)
-        if words else 0
+        if words
+        else 0
     )
 
     unique_word_count = len(
-        set(word.lower() for word in words)
+        set(
+            word.lower()
+            for word in words
+        )
     )
 
     contains_question = "?" in text
     contains_exclamation = "!" in text
 
     punctuation_count = count_punctuation(text)
-    reading_time = estimate_reading_time(text)
-    word_frequency = get_word_frequency(text)
-    sentence_count = count_sentences(text)
-    paragraph_count = count_paragraphs(text)
+
+    reading_time = estimate_reading_time(
+        text
+    )
+
+    word_frequency = get_word_frequency(
+        text
+    )
+
+    sentence_count = count_sentences(
+        text
+    )
+
+    paragraph_count = count_paragraphs(
+        text
+    )
 
     most_common_word = (
         max(
             word_frequency,
-            key=word_frequency.get
+            key=word_frequency.get,
         )
         if word_frequency
         else ""
@@ -146,7 +183,7 @@ def analyze_text(text):
         "shortest_word": shortest_word,
         "average_word_length": round(
             average_word_length,
-            2
+            2,
         ),
         "unique_word_count": unique_word_count,
         "word_frequency": word_frequency,
@@ -159,8 +196,13 @@ def analyze_text(text):
 
 
 def get_text_input():
-    text = input("\nEnter some text: ")
+    """Get text directly from the user."""
+    text = input(
+        "\nEnter some text: "
+    )
+
     validate_text_length(text)
+
     return clean_text(text)
 
 
@@ -170,42 +212,92 @@ def read_text_file(filename):
         with open(
             filename,
             "r",
-            encoding=DEFAULT_ENCODING
+            encoding=DEFAULT_ENCODING,
         ) as file:
             text = file.read()
 
     except FileNotFoundError:
         logger.error(
             "File not found: %s",
-            filename
+            filename,
         )
-        print(f"File not found: {filename}")
+        print(
+            f"File not found: {filename}"
+        )
         return ""
 
     except PermissionError:
         logger.error(
             "Permission denied: %s",
-            filename
+            filename,
         )
-        print(f"Permission denied: {filename}")
+        print(
+            f"Permission denied: {filename}"
+        )
         return ""
 
     except OSError as error:
         logger.error(
             "Unable to read file: %s",
-            error
+            error,
         )
-        print(f"Unable to read file: {error}")
+        print(
+            f"Unable to read file: {error}"
+        )
         return ""
 
-    validate_text_length(text)
+    try:
+        validate_text_length(text)
+
+    except ValueError as error:
+        logger.error(
+            "Input validation failed: %s",
+            error,
+        )
+        print(error)
+        return ""
 
     logger.info(
         "Successfully read input file: %s",
-        filename
+        filename,
     )
 
     return clean_text(text)
+
+
+def select_input_method():
+    """Allow the user to choose how text should be provided."""
+    print("\nSelect input method:")
+    print("1. Enter text manually")
+    print("2. Read text from a file")
+
+    choice = input(
+        "\nEnter your choice (1 or 2): "
+    ).strip()
+
+    if choice == "1":
+        return get_text_input()
+
+    if choice == "2":
+        filename = input(
+            "Enter the text file path: "
+        ).strip()
+
+        if not filename:
+            print(
+                "A file path is required."
+            )
+            return ""
+
+        return read_text_file(
+            filename
+        )
+
+    print(
+        "Invalid choice. Please select 1 or 2."
+    )
+
+    return ""
 
 
 def display_results(result):
@@ -216,41 +308,43 @@ def display_results(result):
     for key, value in result.items():
         display_key = key.replace(
             "_",
-            " "
+            " ",
         ).title()
 
-        print(f"{display_key}: {value}")
+        print(
+            f"{display_key}: {value}"
+        )
 
 
 def save_results_to_json(
     result,
-    filename=DEFAULT_OUTPUT_FILE
+    filename=DEFAULT_OUTPUT_FILE,
 ):
     """Save analysis results to a JSON file."""
     os.makedirs(
         OUTPUT_DIRECTORY,
-        exist_ok=True
+        exist_ok=True,
     )
 
     filepath = os.path.join(
         OUTPUT_DIRECTORY,
-        filename
+        filename,
     )
 
     with open(
         filepath,
         "w",
-        encoding=DEFAULT_ENCODING
+        encoding=DEFAULT_ENCODING,
     ) as file:
         json.dump(
             result,
             file,
-            indent=4
+            indent=4,
         )
 
     logger.info(
         "JSON results saved to %s",
-        filepath
+        filepath,
     )
 
     print(
@@ -260,24 +354,24 @@ def save_results_to_json(
 
 def save_results_to_csv(
     result,
-    filename=DEFAULT_CSV_FILE
+    filename=DEFAULT_CSV_FILE,
 ):
     """Save analysis results to a CSV file."""
     os.makedirs(
         OUTPUT_DIRECTORY,
-        exist_ok=True
+        exist_ok=True,
     )
 
     filepath = os.path.join(
         OUTPUT_DIRECTORY,
-        filename
+        filename,
     )
 
     with open(
         filepath,
         "w",
         newline="",
-        encoding=DEFAULT_ENCODING
+        encoding=DEFAULT_ENCODING,
     ) as file:
         writer = csv.writer(file)
 
@@ -292,7 +386,7 @@ def save_results_to_csv(
 
     logger.info(
         "CSV results saved to %s",
-        filepath
+        filepath,
     )
 
     print(
@@ -309,11 +403,15 @@ def save_analysis_history(result):
             with open(
                 HISTORY_FILE,
                 "r",
-                encoding=DEFAULT_ENCODING
+                encoding=DEFAULT_ENCODING,
             ) as file:
                 history = json.load(file)
 
         except json.JSONDecodeError:
+            logger.warning(
+                "Invalid history file. "
+                "Starting a new history."
+            )
             history = []
 
     history_entry = {
@@ -321,17 +419,19 @@ def save_analysis_history(result):
         "result": result,
     }
 
-    history.append(history_entry)
+    history.append(
+        history_entry
+    )
 
     with open(
         HISTORY_FILE,
         "w",
-        encoding=DEFAULT_ENCODING
+        encoding=DEFAULT_ENCODING,
     ) as file:
         json.dump(
             history,
             file,
-            indent=4
+            indent=4,
         )
 
     logger.info(
@@ -340,31 +440,56 @@ def save_analysis_history(result):
 
 
 def main():
+    """Run the main application workflow."""
     show_banner()
 
     print(
-        "Welcome! Enter text to begin analysis."
+        "Welcome! Analyze text using "
+        "automated Python workflows."
     )
 
-    text = get_text_input()
+    try:
+        text = select_input_method()
 
-    if not text.strip():
+    except ValueError as error:
+        logger.error(
+            "Input validation failed: %s",
+            error,
+        )
         print(
-            "Please enter some valid text."
+            f"\nInput error: {error}"
         )
         return
 
-    result = analyze_text(text)
+    if not text.strip():
+        print(
+            "\nPlease provide some valid text."
+        )
+        return
+
+    result = analyze_text(
+        text
+    )
 
     logger.info(
         "Text analysis completed successfully"
     )
 
-    display_results(result)
+    display_results(
+        result
+    )
 
-    save_results_to_json(result)
-    save_results_to_csv(result)
-    save_analysis_history(result)
+    save_results_to_json(
+        result
+    )
+
+    save_results_to_csv(
+        result
+    )
+
+    save_analysis_history(
+        result
+    )
 
     print(
         "\nThank you for using "
