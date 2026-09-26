@@ -10,6 +10,9 @@ DEFAULT_ENCODING = "utf-8"
 MAX_INPUT_LENGTH = 10000
 
 DEFAULT_OUTPUT_FILE = "analysis_result.json"
+
 DEFAULT_CSV_FILE = "analysis_result.csv"
 
 OUTPUT_DIRECTORY = "output"
+
+HISTORY_FILE = "analysis_history.json"
