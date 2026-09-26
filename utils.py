@@ -7,6 +7,7 @@ from utils import (
     validate_text_length,
     count_punctuation,
     estimate_reading_time,
+    get_word_frequency,
 )
 
 import string
