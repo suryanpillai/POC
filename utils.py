@@ -1,3 +1,12 @@
+import string
+
+
+def count_punctuation(text):
+    """Count punctuation characters in text."""
+    return sum(char in string.punctuation for char in text)
+
+"punctuation_count": count_punctuation(text),
+
 from collections import Counter
 
 
