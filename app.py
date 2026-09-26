@@ -23,9 +23,13 @@ def show_banner():
 
 def analyze_text(text):
     digit_count = sum(char.isdigit() for char in text)
+    alphabetic_count = sum(char.isalpha() for char in text)
+
     words = text.split()
+
     uppercase_count = sum(char.isupper() for char in text)
     lowercase_count = sum(char.islower() for char in text)
+
     text_length = len(text)
     is_empty = not bool(text.strip())
 
@@ -78,6 +82,7 @@ def analyze_text(text):
     return {
         "word_count": len(words),
         "character_count": text_length,
+        "alphabetic_character_count": alphabetic_count,
         "uppercase_text": to_uppercase(text),
         "lowercase_text": to_lowercase(text),
         "sentence_count": sentence_count,
