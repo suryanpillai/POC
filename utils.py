@@ -10,6 +10,16 @@ from utils import (
     get_word_frequency,
 )
 
+def count_paragraphs(text):
+    """Count non-empty paragraphs in text."""
+    paragraphs = [
+        paragraph.strip()
+        for paragraph in text.split("\n\n")
+        if paragraph.strip()
+    ]
+
+    return len(paragraphs)
+
 def count_sentences(text):
     """Count sentences based on common sentence-ending punctuation."""
     sentences = [
