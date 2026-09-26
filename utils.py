@@ -1,11 +1,21 @@
 """Utility functions for AI Text Automation."""
 
+from utils import (
+    clean_text,
+    to_uppercase,
+    to_lowercase,
+    validate_text_length,
+    count_punctuation,
+    estimate_reading_time,
+)
+
 import string
 from collections import Counter
 
 from config import MAX_INPUT_LENGTH
 
-
+reading_time = estimate_reading_time(text)
+"estimated_reading_time_minutes": reading_time,
 def clean_text(text):
     """Remove unnecessary whitespace from text."""
     if text is None:
