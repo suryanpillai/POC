@@ -24,7 +24,10 @@ def to_uppercase(text):
     return text.upper()
 
 
-def validate_text_length(text, max_length=MAX_INPUT_LENGTH):
+def validate_text_length(
+    text,
+    max_length=MAX_INPUT_LENGTH,
+):
     """Validate that text does not exceed the configured maximum length."""
     if len(text) > max_length:
         raise ValueError(
@@ -43,7 +46,10 @@ def count_punctuation(text):
     )
 
 
-def estimate_reading_time(text, words_per_minute=200):
+def estimate_reading_time(
+    text,
+    words_per_minute=200,
+):
     """Estimate reading time in minutes."""
     if words_per_minute <= 0:
         raise ValueError(
@@ -57,14 +63,32 @@ def estimate_reading_time(text, words_per_minute=200):
 
     return round(
         words / words_per_minute,
-        2
+        2,
     )
 
 
 def get_word_frequency(text):
-    """Return word frequency information."""
-    words = text.lower().split()
-    return dict(Counter(words))
+    """Return normalized word frequency information."""
+    translator = str.maketrans(
+        "",
+        "",
+        string.punctuation,
+    )
+
+    words = [
+        word.translate(translator).lower()
+        for word in text.split()
+    ]
+
+    words = [
+        word
+        for word in words
+        if word
+    ]
+
+    return dict(
+        Counter(words)
+    )
 
 
 def count_sentences(text):
