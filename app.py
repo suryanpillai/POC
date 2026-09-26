@@ -162,8 +162,17 @@ def read_text_file(filename):
             encoding=DEFAULT_ENCODING
         ) as file:
             text = file.read()
+
     except FileNotFoundError:
         print(f"File not found: {filename}")
+        return ""
+
+    except PermissionError:
+        print(f"Permission denied: {filename}")
+        return ""
+
+    except OSError as error:
+        print(f"Unable to read file: {error}")
         return ""
 
     validate_text_length(text)
