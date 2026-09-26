@@ -153,13 +153,27 @@ def get_text_input():
     return clean_text(text)
 
 
+def read_text_file(filename):
+    """Read text from a file."""
+    with open(
+        filename,
+        "r",
+        encoding=DEFAULT_ENCODING
+    ) as file:
+        return file.read()
+
+
 def display_results(result):
     """Display analysis results in a readable format."""
     print("\nAI Automation Result")
     print(SEPARATOR)
 
     for key, value in result.items():
-        display_key = key.replace("_", " ").title()
+        display_key = key.replace(
+            "_",
+            " "
+        ).title()
+
         print(f"{display_key}: {value}")
 
 
@@ -168,7 +182,10 @@ def save_results_to_json(
     filename=DEFAULT_OUTPUT_FILE
 ):
     """Save analysis results to a JSON file."""
-    os.makedirs(OUTPUT_DIRECTORY, exist_ok=True)
+    os.makedirs(
+        OUTPUT_DIRECTORY,
+        exist_ok=True
+    )
 
     filepath = os.path.join(
         OUTPUT_DIRECTORY,
@@ -186,7 +203,9 @@ def save_results_to_json(
             indent=4
         )
 
-    print(f"\nResults saved to {filepath}")
+    print(
+        f"\nResults saved to {filepath}"
+    )
 
 
 def save_results_to_csv(
@@ -194,7 +213,10 @@ def save_results_to_csv(
     filename=DEFAULT_CSV_FILE
 ):
     """Save analysis results to a CSV file."""
-    os.makedirs(OUTPUT_DIRECTORY, exist_ok=True)
+    os.makedirs(
+        OUTPUT_DIRECTORY,
+        exist_ok=True
+    )
 
     filepath = os.path.join(
         OUTPUT_DIRECTORY,
@@ -209,12 +231,18 @@ def save_results_to_csv(
     ) as file:
         writer = csv.writer(file)
 
-        writer.writerow(["Metric", "Value"])
+        writer.writerow(
+            ["Metric", "Value"]
+        )
 
         for key, value in result.items():
-            writer.writerow([key, value])
+            writer.writerow(
+                [key, value]
+            )
 
-    print(f"Results saved to {filepath}")
+    print(
+        f"Results saved to {filepath}"
+    )
 
 
 def main():
