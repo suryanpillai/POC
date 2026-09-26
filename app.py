@@ -154,13 +154,21 @@ def get_text_input():
 
 
 def read_text_file(filename):
-    """Read text from a file."""
-    with open(
-        filename,
-        "r",
-        encoding=DEFAULT_ENCODING
-    ) as file:
-        return file.read()
+    """Read and validate text from a file."""
+    try:
+        with open(
+            filename,
+            "r",
+            encoding=DEFAULT_ENCODING
+        ) as file:
+            text = file.read()
+    except FileNotFoundError:
+        print(f"File not found: {filename}")
+        return ""
+
+    validate_text_length(text)
+
+    return clean_text(text)
 
 
 def display_results(result):
