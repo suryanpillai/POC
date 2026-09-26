@@ -1,3 +1,4 @@
+import csv
 import json
 
 from utils import (
@@ -179,9 +180,28 @@ def save_results_to_json(
             indent=4
         )
 
-    print(
-        f"\nResults saved to {filename}"
-    )
+    print(f"\nResults saved to {filename}")
+
+
+def save_results_to_csv(
+    result,
+    filename="analysis_result.csv"
+):
+    """Save analysis results to a CSV file."""
+    with open(
+        filename,
+        "w",
+        newline="",
+        encoding=DEFAULT_ENCODING
+    ) as file:
+        writer = csv.writer(file)
+
+        writer.writerow(["Metric", "Value"])
+
+        for key, value in result.items():
+            writer.writerow([key, value])
+
+    print(f"Results saved to {filename}")
 
 
 def main():
@@ -204,6 +224,7 @@ def main():
     display_results(result)
 
     save_results_to_json(result)
+    save_results_to_csv(result)
 
     print(
         "\nThank you for using "
