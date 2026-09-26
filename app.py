@@ -1,5 +1,6 @@
 import csv
 import json
+import logging
 import os
 from datetime import datetime
 
@@ -25,6 +26,14 @@ from config import (
     OUTPUT_DIRECTORY,
     HISTORY_FILE,
 )
+
+
+logging.basicConfig(
+    level=logging.INFO,
+    format="%(asctime)s - %(levelname)s - %(message)s",
+)
+
+logger = logging.getLogger(__name__)
 
 
 def show_banner():
@@ -166,18 +175,35 @@ def read_text_file(filename):
             text = file.read()
 
     except FileNotFoundError:
+        logger.error(
+            "File not found: %s",
+            filename
+        )
         print(f"File not found: {filename}")
         return ""
 
     except PermissionError:
+        logger.error(
+            "Permission denied: %s",
+            filename
+        )
         print(f"Permission denied: {filename}")
         return ""
 
     except OSError as error:
+        logger.error(
+            "Unable to read file: %s",
+            error
+        )
         print(f"Unable to read file: {error}")
         return ""
 
     validate_text_length(text)
+
+    logger.info(
+        "Successfully read input file: %s",
+        filename
+    )
 
     return clean_text(text)
 
@@ -315,6 +341,10 @@ def main():
         return
 
     result = analyze_text(text)
+
+    logger.info(
+        "Text analysis completed successfully"
+    )
 
     display_results(result)
 
