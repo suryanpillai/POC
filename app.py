@@ -1,3 +1,5 @@
+import json
+
 from utils import (
     clean_text,
     to_uppercase,
@@ -63,22 +65,12 @@ def analyze_text(text):
     space_count = text.count(" ")
     line_count = len(text.splitlines())
 
-    longest_word = (
-        max(words, key=len)
-        if words
-        else ""
-    )
-
-    shortest_word = (
-        min(words, key=len)
-        if words
-        else ""
-    )
+    longest_word = max(words, key=len) if words else ""
+    shortest_word = min(words, key=len) if words else ""
 
     average_word_length = (
         sum(len(word) for word in words) / len(words)
-        if words
-        else 0
+        if words else 0
     )
 
     unique_word_count = len(
@@ -95,10 +87,7 @@ def analyze_text(text):
     paragraph_count = count_paragraphs(text)
 
     most_common_word = (
-        max(
-            word_frequency,
-            key=word_frequency.get
-        )
+        max(word_frequency, key=word_frequency.get)
         if word_frequency
         else ""
     )
@@ -165,22 +154,52 @@ def display_results(result):
         print(f"{display_key}: {value}")
 
 
+def save_results_to_json(
+    result,
+    filename="analysis_result.json"
+):
+    """Save analysis results to a JSON file."""
+    with open(
+        filename,
+        "w",
+        encoding="utf-8"
+    ) as file:
+        json.dump(
+            result,
+            file,
+            indent=4
+        )
+
+    print(
+        f"\nResults saved to {filename}"
+    )
+
+
 def main():
     show_banner()
 
-    print("Welcome! Enter text to begin analysis.")
+    print(
+        "Welcome! Enter text to begin analysis."
+    )
 
     text = get_text_input()
 
     if not text.strip():
-        print("Please enter some valid text.")
+        print(
+            "Please enter some valid text."
+        )
         return
 
     result = analyze_text(text)
 
     display_results(result)
 
-    print("\nThank you for using AI Text Automation Tool!")
+    save_results_to_json(result)
+
+    print(
+        "\nThank you for using "
+        "AI Text Automation Tool!"
+    )
 
 
 if __name__ == "__main__":
