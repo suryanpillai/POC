@@ -1,3 +1,11 @@
+from collections import Counter
+
+
+def get_word_frequency(text):
+    """Return word frequency information for the supplied text."""
+    words = text.lower().split()
+    return dict(Counter(words))
+
 def clean_text(text):
     """Remove unnecessary whitespace from text."""
     if text is None:
