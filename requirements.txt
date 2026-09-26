@@ -1,1 +1,4 @@
 # No external dependencies required yet
+# AI Text Automation Tool
+# No third-party dependencies are required.
+# The application uses only Python standard-library modules.
