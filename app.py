@@ -8,6 +8,13 @@ from utils import (
     count_punctuation,
 )
 
+def save_results_to_json(result, filename="analysis_result.json"):
+    """Save analysis results to a JSON file."""
+    with open(filename, "w", encoding="utf-8") as file:
+        json.dump(result, file, indent=4)
+
+    print(f"\nResults saved to {filename}")
+
 from config import APP_NAME, APP_VERSION, SEPARATOR
 
 punctuation_count = count_punctuation(text)
