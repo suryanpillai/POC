@@ -248,6 +248,11 @@ def save_results_to_json(
             indent=4
         )
 
+    logger.info(
+        "JSON results saved to %s",
+        filepath
+    )
+
     print(
         f"\nResults saved to {filepath}"
     )
@@ -284,6 +289,11 @@ def save_results_to_csv(
             writer.writerow(
                 [key, value]
             )
+
+    logger.info(
+        "CSV results saved to %s",
+        filepath
+    )
 
     print(
         f"Results saved to {filepath}"
@@ -323,6 +333,10 @@ def save_analysis_history(result):
             file,
             indent=4
         )
+
+    logger.info(
+        "Analysis history updated"
+    )
 
 
 def main():
