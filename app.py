@@ -12,7 +12,13 @@ from utils import (
     count_paragraphs,
 )
 
-from config import APP_NAME, APP_VERSION, SEPARATOR
+from config import (
+    APP_NAME,
+    APP_VERSION,
+    SEPARATOR,
+    DEFAULT_ENCODING,
+    DEFAULT_OUTPUT_FILE,
+)
 
 
 def show_banner():
@@ -87,7 +93,10 @@ def analyze_text(text):
     paragraph_count = count_paragraphs(text)
 
     most_common_word = (
-        max(word_frequency, key=word_frequency.get)
+        max(
+            word_frequency,
+            key=word_frequency.get
+        )
         if word_frequency
         else ""
     )
@@ -156,13 +165,13 @@ def display_results(result):
 
 def save_results_to_json(
     result,
-    filename="analysis_result.json"
+    filename=DEFAULT_OUTPUT_FILE
 ):
     """Save analysis results to a JSON file."""
     with open(
         filename,
         "w",
-        encoding="utf-8"
+        encoding=DEFAULT_ENCODING
     ) as file:
         json.dump(
             result,
