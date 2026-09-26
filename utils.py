@@ -9,6 +9,15 @@ def count_punctuation(text):
 
 from collections import Counter
 
+def estimate_reading_time(text, words_per_minute=200):
+    """Estimate reading time in minutes."""
+    words = len(text.split())
+
+    if words == 0:
+        return 0
+
+    return round(words / words_per_minute, 2)
+
 
 def get_word_frequency(text):
     """Return word frequency information for the supplied text."""
